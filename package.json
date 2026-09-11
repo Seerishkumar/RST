@@ -1,0 +1,17 @@
+{
+  "name": "rst-website",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "app"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w app",
+    "build": "npm run build -w app",
+    "start": "npm run start -w app",
+    "lint": "npm run lint -w app"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
