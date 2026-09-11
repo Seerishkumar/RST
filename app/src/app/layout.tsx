@@ -25,7 +25,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-[#f6f7fb] text-slate-900">
+      <body className="min-h-full bg-[#f6f7fb] text-slate-900 pt-[104px] sm:pt-[112px]">
         <div className="min-h-screen">
           <SiteHeader />
           <main className="flex-1">{children}</main>

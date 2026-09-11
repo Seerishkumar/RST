@@ -1,97 +1,192 @@
-const cards = [
-  { title: "Total Students", value: "5,240", tone: "bg-[#eaf3ff] text-[#0d2d5c]" },
-  { title: "Active Courses", value: "18", tone: "bg-[#fff4eb] text-[#d95d0a]" },
-  { title: "Placements", value: "92%", tone: "bg-[#edf9f0] text-[#186a3b]" },
-  { title: "Enquiries", value: "146", tone: "bg-[#fdf2f8] text-[#9d1662]" },
-];
+"use client";
 
-const courseRows = [
-  { name: "Web Development", status: "Live", students: "420" },
-  { name: "Digital Marketing", status: "Live", students: "310" },
-  { name: "Graphic Design", status: "Draft", students: "120" },
-  { name: "Cloud & Security", status: "Live", students: "265" },
-];
+import { useEffect, useMemo, useState } from "react";
+
+const defaultContent = {
+  academyName: "Ramesh Soft Tech Academy",
+  tagline: "Quality Training",
+  heroTitle: "Empowering future-ready careers through skill-based training.",
+  heroText:
+    "We help students and professionals build confidence, real-world skills, and career momentum through practical, mentor-led learning.",
+  aboutTitle: "A trusted place for learning and growth.",
+  aboutText:
+    "Ramesh Soft Tech Academy is committed to providing professional, practical, and future-ready education that helps learners grow with confidence and achieve meaningful career opportunities.",
+  phone: "+91 98765 43210",
+  email: "info@rameshsofttechacademy.com",
+  address: "Your location here",
+};
 
 export default function AdminPage() {
+  const [content, setContent] = useState(defaultContent);
+  const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    const stored = window.localStorage.getItem("rst-admin-content");
+    if (stored) {
+      setContent(JSON.parse(stored));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!saved) return;
+    const timer = window.setTimeout(() => setSaved(false), 1600);
+    return () => window.clearTimeout(timer);
+  }, [saved]);
+
+  const stats = useMemo(
+    () => [
+      { title: "Total Students", value: "5,240" },
+      { title: "Active Courses", value: "18" },
+      { title: "Placements", value: "92%" },
+      { title: "Enquiries", value: "146" },
+    ],
+    [],
+  );
+
+  const updateField = (key: keyof typeof defaultContent, value: string) => {
+    setContent((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const saveContent = () => {
+    window.localStorage.setItem("rst-admin-content", JSON.stringify(content));
+    setSaved(true);
+  };
+
   return (
-    <main className="min-h-screen bg-slate-100 p-6 text-slate-900">
-      <div className="mx-auto max-w-7xl">
-        <header className="mb-8 flex flex-col gap-4 rounded-[2rem] bg-[#0d2d5c] p-6 text-white md:flex-row md:items-center md:justify-between">
+    <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mb-8 rounded-[2rem] bg-[#0d2d5c] p-6 text-white shadow-[0_18px_40px_rgba(13,45,92,0.18)] md:p-8">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.25em] text-orange-200">Admin Panel</p>
-            <h1 className="mt-2 text-3xl font-black">RST Dashboard</h1>
+            <p className="text-sm font-black uppercase tracking-[0.25em] text-orange-200">Admin Panel</p>
+            <h1 className="mt-2 text-3xl font-black sm:text-4xl">RST Dashboard</h1>
           </div>
-          <button className="brand-button rounded-full px-5 py-2.5 text-sm font-bold text-white">
-            + Add New Content
+
+          <button
+            type="button"
+            onClick={saveContent}
+            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#f47d20] to-[#dd6210] px-5 py-2.5 text-sm font-bold text-white shadow-[0_10px_25px_rgba(244,125,32,0.35)]"
+          >
+            {saved ? "Saved" : "Save Changes"}
           </button>
-        </header>
+        </div>
+      </div>
 
-        <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {cards.map((card) => (
-            <div key={card.title} className={`rounded-3xl p-5 ${card.tone}`}>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em]">{card.title}</p>
-              <p className="mt-4 text-4xl font-black">{card.value}</p>
+      <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        {stats.map((card) => (
+          <div key={card.title} className="rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-sm">
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">{card.title}</p>
+            <p className="mt-4 text-4xl font-black text-[#0d2d5c]">{card.value}</p>
+          </div>
+        ))}
+      </section>
+
+      <section className="mt-8 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="rounded-[2rem] bg-white p-6 shadow-[0_18px_40px_rgba(13,45,92,0.08)] ring-1 ring-slate-200">
+          <h2 className="text-2xl font-black text-[#0d2d5c]">Website Content Editor</h2>
+
+          <div className="mt-6 space-y-5">
+            <div>
+              <label className="mb-2 block text-sm font-semibold text-slate-700">Academy Name</label>
+              <input
+                value={content.academyName}
+                onChange={(e) => updateField("academyName", e.target.value)}
+                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+              />
             </div>
-          ))}
-        </section>
 
-        <section className="mt-8 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="rounded-[2rem] bg-white p-6 shadow-sm">
-            <div className="mb-5 flex items-center justify-between">
-              <h2 className="text-2xl font-black text-[#0d2d5c]">Course Overview</h2>
-              <span className="rounded-full bg-[#edf4ff] px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] text-[#0d2d5c]">
-                Updated Today
-              </span>
+            <div>
+              <label className="mb-2 block text-sm font-semibold text-slate-700">Tagline</label>
+              <input
+                value={content.tagline}
+                onChange={(e) => updateField("tagline", e.target.value)}
+                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+              />
             </div>
 
-            <div className="overflow-hidden rounded-2xl border border-slate-200">
-              <table className="min-w-full text-left text-sm">
-                <thead className="bg-slate-100 text-slate-600">
-                  <tr>
-                    <th className="px-4 py-3 font-bold">Course</th>
-                    <th className="px-4 py-3 font-bold">Status</th>
-                    <th className="px-4 py-3 font-bold">Students</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {courseRows.map((row) => (
-                    <tr key={row.name} className="border-t border-slate-200">
-                      <td className="px-4 py-3 font-semibold text-slate-800">{row.name}</td>
-                      <td className="px-4 py-3">
-                        <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${row.status === "Live" ? "bg-[#edf9f0] text-[#1d7a48]" : "bg-[#fff4eb] text-[#d95d0a]"}`}>
-                          {row.status}
-                        </span>
-                      </td>
-                      <td className="px-4 py-3 text-slate-700">{row.students}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div>
+              <label className="mb-2 block text-sm font-semibold text-slate-700">Hero Title</label>
+              <textarea
+                rows={3}
+                value={content.heroTitle}
+                onChange={(e) => updateField("heroTitle", e.target.value)}
+                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+              />
+            </div>
+
+            <div>
+              <label className="mb-2 block text-sm font-semibold text-slate-700">Hero Description</label>
+              <textarea
+                rows={4}
+                value={content.heroText}
+                onChange={(e) => updateField("heroText", e.target.value)}
+                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+              />
+            </div>
+
+            <div>
+              <label className="mb-2 block text-sm font-semibold text-slate-700">About Title</label>
+              <input
+                value={content.aboutTitle}
+                onChange={(e) => updateField("aboutTitle", e.target.value)}
+                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+              />
+            </div>
+
+            <div>
+              <label className="mb-2 block text-sm font-semibold text-slate-700">About Description</label>
+              <textarea
+                rows={4}
+                value={content.aboutText}
+                onChange={(e) => updateField("aboutText", e.target.value)}
+                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+              />
             </div>
           </div>
+        </div>
 
-          <div className="space-y-6">
-            <div className="rounded-[2rem] bg-white p-6 shadow-sm">
-              <h3 className="text-xl font-black text-[#0d2d5c]">Quick Actions</h3>
-              <div className="mt-4 space-y-3">
-                <button className="w-full rounded-2xl bg-[#0d2d5c] px-4 py-3 text-left font-bold text-white">Edit Home Page</button>
-                <button className="w-full rounded-2xl bg-[#edf4ff] px-4 py-3 text-left font-bold text-[#0d2d5c]">Update Courses</button>
-                <button className="w-full rounded-2xl bg-[#fff4eb] px-4 py-3 text-left font-bold text-[#d95d0a]">Manage Gallery</button>
+        <div className="space-y-6">
+          <div className="rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-slate-200">
+            <h3 className="text-xl font-black text-[#0d2d5c]">Contact Details</h3>
+            <div className="mt-4 space-y-4">
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Phone</label>
+                <input
+                  value={content.phone}
+                  onChange={(e) => updateField("phone", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Email</label>
+                <input
+                  value={content.email}
+                  onChange={(e) => updateField("email", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Address</label>
+                <input
+                  value={content.address}
+                  onChange={(e) => updateField("address", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
               </div>
             </div>
-
-            <div className="rounded-[2rem] bg-[#fff7f1] p-6 shadow-sm">
-              <h3 className="text-xl font-black text-[#0d2d5c]">Website Status</h3>
-              <ul className="mt-4 space-y-3 text-sm text-slate-700">
-                <li>• Homepage design ready</li>
-                <li>• Brand colors applied</li>
-                <li>• Admin panel scaffold created</li>
-                <li>• Content management ready for next step</li>
-              </ul>
-            </div>
           </div>
-        </section>
-      </div>
+
+          <div className="rounded-[2rem] bg-[#fff7f1] p-6 shadow-sm ring-1 ring-[#f7dcc0]">
+            <h3 className="text-xl font-black text-[#0d2d5c]">Quick Tips</h3>
+            <ul className="mt-4 space-y-3 text-sm text-slate-700">
+              <li>• Update your academy branding and message from here.</li>
+              <li>• Keep course names short and easy to scan.</li>
+              <li>• Save often after changing the contact details.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
