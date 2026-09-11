@@ -49,14 +49,14 @@ export function SiteHeader() {
               <div className="h-12 w-12 shrink-0 sm:h-14 sm:w-14">
                 <LogoBadge className="h-full w-full" />
               </div>
-              <div className="min-w-0 leading-tight">
+              {/* <div className="min-w-0 leading-tight">
                 <p className="text-[0.58rem] font-black uppercase tracking-[0.22em] text-[#f47d20]">
                   Quality Training
                 </p>
                 <p className="truncate text-sm font-black text-[#0d2d5c] sm:text-base">
                   Ramesh Soft Tech Academy
                 </p>
-              </div>
+              </div> */}
             </Link>
 
             <div className="hidden items-center gap-6 md:flex">
