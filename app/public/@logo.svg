@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Ramesh Soft Tech Academy logo</title>
+  <desc id="desc">Academic circular logo with navy and orange colors.</desc>
+  <rect width="1000" height="1000" fill="#f6f7fb"/>
+  <circle cx="500" cy="500" r="440" fill="#ffffff" stroke="#0d2d5c" stroke-width="30"/>
+  <circle cx="500" cy="500" r="405" fill="none" stroke="#f47d20" stroke-width="26"/>
+
+  <g fill="#0d2d5c">
+    <path d="M220 240 L280 240 L500 100 L720 240 L780 240 L780 300 L220 300 Z" fill="#0d2d5c" opacity="0.96"/>
+    <text x="500" y="230" text-anchor="middle" font-size="52" font-weight="900" letter-spacing="10" fill="#ffffff" font-family="Arial, Helvetica, sans-serif">RAMESH SOFT TECH ACADEMY</text>
+  </g>
+
+  <g transform="translate(0 14)">
+    <path d="M410 240 L468 240 L468 328 L380 328 L410 240 Z" fill="#0d2d5c"/>
+    <path d="M490 240 L548 240 L548 328 L448 328 L490 240 Z" fill="#0d2d5c"/>
+    <path d="M352 338 L648 338 L584 490 L416 490 Z" fill="#0d2d5c"/>
+    <path d="M500 214 L568 290 L500 300 L432 290 Z" fill="#0d2d5c"/>
+    <path d="M500 200 L540 250 L500 260 L460 250 Z" fill="#f47d20"/>
+    <path d="M355 306 L360 280 L488 280 L500 302 L516 280 L644 280 L648 306 Z" fill="#0d2d5c"/>
+  </g>
+
+  <g transform="translate(0 24)">
+    <path d="M500 330 C470 330 460 360 450 392 C435 437 415 448 392 467 C430 500 476 492 495 469 L500 467 L505 469 C524 492 570 500 608 467 C585 448 565 437 550 392 C540 360 530 330 500 330 Z" fill="#0d2d5c"/>
+    <path d="M468 498 C436 531 420 570 420 624 C420 701 450 738 500 738 C550 738 580 701 580 624 C580 570 564 531 532 498 Z" fill="#0d2d5c"/>
+    <path d="M420 594 C455 620 470 655 468 692 L425 702 C420 656 409 620 390 594 Z" fill="#0d2d5c"/>
+    <path d="M580 594 C545 620 530 655 532 692 L575 702 C580 656 591 620 610 594 Z" fill="#0d2d5c"/>
+  </g>
+
+  <g transform="translate(0 0)">
+    <path d="M310 630 L548 630 L500 840 L220 840 Z" fill="#f47d20"/>
+    <path d="M690 630 L492 630 L500 840 L780 840 Z" fill="#f47d20"/>
+    <path d="M500 640 C540 610 580 620 620 650 L610 700 C560 675 530 675 500 700 C470 675 440 675 390 700 L380 650 C420 620 460 610 500 640 Z" fill="#0d2d5c"/>
+    <path d="M242 628 L760 628 L712 674 L290 674 Z" fill="#0d2d5c"/>
+    <path d="M290 674 L712 674 L740 720 L262 720 Z" fill="#0d2d5c"/>
+  </g>
+
+  <g>
+    <path d="M720 610 L760 515 L800 610 L720 610 Z" fill="#f47d20"/>
+    <path d="M735 488 L765 552 L795 488 Z" fill="#f47d20"/>
+    <path d="M200 610 L240 515 L280 610 L200 610 Z" fill="#f47d20"/>
+    <path d="M215 488 L245 552 L275 488 Z" fill="#f47d20"/>
+  </g>
+
+  <g>
+    <path d="M500 368 L530 394 L480 394 Z" fill="#f47d20"/>
+  </g>
+
+  <g>
+    <text x="500" y="630" text-anchor="middle" font-size="220" font-weight="900" fill="#0d2d5c" font-family="Arial, Helvetica, sans-serif">RST</text>
+    <path d="M250 770 L750 770 L705 835 L295 835 Z" fill="#0d2d5c"/>
+    <text x="500" y="816" text-anchor="middle" font-size="72" font-weight="900" letter-spacing="6" fill="#ffffff" font-family="Arial, Helvetica, sans-serif">QUALITY TRAINING</text>
+  </g>
+</svg>
