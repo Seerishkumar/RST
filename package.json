@@ -9,7 +9,8 @@
     "dev": "cd app && npm run dev",
     "build": "cd app && npm run build",
     "start": "cd app && npm run start",
-    "lint": "cd app && npm run lint"
+    "lint": "cd app && npm run lint",
+    "check:imports": "node ./scripts/check-case-sensitive-imports.js"
   },
   "engines": {
     "node": ">=20.0.0"
