@@ -11,7 +11,7 @@ const navItems = [
     href: "/about",
     label: "About",
     children: [
-      { href: "/about/ramesh-it", label: "About Ramesh IT" },
+      { href: "/about/ramesh-soft-tech", label: "About Ramesh Soft Tech" },
       { href: "/about/trainers-profile", label: "Trainers Profile" },
       { href: "/about/our-theme", label: "Our Theme" },
       { href: "/about/careers", label: "Careers" },

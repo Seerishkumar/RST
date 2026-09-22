@@ -1,5 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getSiteContent } from "@/lib/site-content";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const siteContent = await getSiteContent();
+
+  return {
+    title: siteContent.aboutMetaTitle,
+    description: siteContent.aboutMetaDescription,
+  };
+}
 
 const values = [
   "Career-focused learning paths",
@@ -58,7 +68,7 @@ export default async function AboutPage() {
         <p className="text-sm font-black uppercase tracking-[0.22em] text-[#0d2d5c]">Explore more</p>
         <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {[
-            ["About Ramesh IT", "/about/ramesh-it"],
+            ["About Ramesh Soft Tech", "/about/ramesh-soft-tech"],
             ["Trainers Profile", "/about/trainers-profile"],
             ["Our Theme", "/about/our-theme"],
             ["Careers", "/about/careers"],

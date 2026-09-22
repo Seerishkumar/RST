@@ -12,9 +12,60 @@ const defaultContent = {
   aboutTitle: "A trusted place for learning and growth.",
   aboutText:
     "Ramesh Soft Tech Academy is committed to providing professional, practical, and future-ready education that helps learners grow with confidence and achieve meaningful career opportunities.",
+  homeMetaTitle: "Ramesh Soft Tech Academy | Professional Training & Career Growth",
+  homeMetaDescription:
+    "Explore practical, career-focused training programs designed to help learners build confidence, skills, and job-ready expertise.",
+  aboutMetaTitle: "About Ramesh Soft Tech Academy | Career-Focused Education",
+  aboutMetaDescription:
+    "Learn about our mission, educators, and the practical learning approach that helps students and professionals grow with confidence.",
+  courseMetaTitle: "Courses | Ramesh Soft Tech Academy",
+  courseMetaDescription:
+    "Discover skill-based programs in software development, digital marketing, cloud, design, and career readiness.",
+  batchesMetaTitle: "Upcoming Online Training Batches | Ramesh Soft Tech Academy",
+  batchesMetaDescription:
+    "View upcoming online training batches, timings, and course details for flexible learning options.",
+  visionMetaTitle: "Our Vision | Ramesh Soft Tech Academy",
+  visionMetaDescription:
+    "See our vision, mission, and values focused on practical learning, mentorship, and lifelong career growth.",
+  contactMetaTitle: "Contact Us | Ramesh Soft Tech Academy",
+  contactMetaDescription:
+    "Speak with our team about programs, training batches, and enrollment support for your next step.",
+  visionTitle: "Creating brighter futures through purposeful education.",
+  visionText:
+    "We believe the right learning environment, skilled mentors, and practical exposure can transform careers and confidence for every learner.",
+  batchesTitle: "Upcoming Online Training Batches",
+  batchesIntro:
+    "Discover flexible learning schedules and mentor-guided training options tailored to your goals.",
+  contactTitle: "Talk to our team today.",
+  contactText:
+    "Connect with us to learn more about our programs, training batches, and enrollment support.",
   phone: "+91 98765 43210",
   email: "info@rameshsofttechacademy.com",
   address: "Your location here",
+  batchesRows: [
+    {
+      id: "dotnet-full-stack",
+      courseName: ".NET Dotnet Full Stack",
+      faculty: "Mr. Mahindra",
+      date: "4-06-2026",
+      duration: "4 Months",
+      timings: "08:30 AM",
+      syllabus: "Full Stack .NET",
+      actionLabel: "Zoom",
+      actionLink: "#",
+    },
+    {
+      id: "java-placement",
+      courseName: "Full Stack Java Placement Assistance Program",
+      faculty: "Mr. Kannababu",
+      date: "4-6-2026",
+      duration: "4 Months",
+      timings: "10:00 AM",
+      syllabus: "Java, Spring Boot, Frontend",
+      actionLabel: "Zoom",
+      actionLink: "#",
+    },
+  ],
 };
 
 export default function AdminPage() {
@@ -62,8 +113,20 @@ export default function AdminPage() {
     [],
   );
 
-  const updateField = (key: keyof typeof defaultContent, value: string) => {
+  const updateField = (key: keyof typeof defaultContent, value: string | typeof defaultContent.batchesRows) => {
     setContent((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const updateBatchRows = (value: string) => {
+    try {
+      const parsed = JSON.parse(value);
+      if (!Array.isArray(parsed)) {
+        throw new Error("Batch rows must be a JSON array");
+      }
+      updateField("batchesRows", parsed);
+    } catch {
+      window.alert("Batch rows must be valid JSON in array format.");
+    }
   };
 
   const saveContent = async () => {
@@ -88,8 +151,9 @@ export default function AdminPage() {
 
   const logout = async () => {
     await fetch("/api/logout", { method: "POST" });
-    router.push("/login");
+    router.replace("/login");
     router.refresh();
+    window.location.href = "/login";
   };
 
   if (loading) {
@@ -141,65 +205,225 @@ export default function AdminPage() {
       </section>
 
       <section className="mt-8 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-        <div className="rounded-[2rem] bg-white p-6 shadow-[0_18px_40px_rgba(13,45,92,0.08)] ring-1 ring-slate-200">
-          <h2 className="text-2xl font-black text-[#0d2d5c]">Website Content Editor</h2>
+        <div className="space-y-6">
+          <div className="rounded-[2rem] bg-white p-6 shadow-[0_18px_40px_rgba(13,45,92,0.08)] ring-1 ring-slate-200">
+            <h2 className="text-2xl font-black text-[#0d2d5c]">Website Content Editor</h2>
 
-          <div className="mt-6 space-y-5">
-            <div>
-              <label className="mb-2 block text-sm font-semibold text-slate-700">Academy Name</label>
-              <input
-                value={content.academyName}
-                onChange={(e) => updateField("academyName", e.target.value)}
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
-              />
+            <div className="mt-6 space-y-5">
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Academy Name</label>
+                <input
+                  value={content.academyName}
+                  onChange={(e) => updateField("academyName", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Tagline</label>
+                <input
+                  value={content.tagline}
+                  onChange={(e) => updateField("tagline", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Hero Title</label>
+                <textarea
+                  rows={3}
+                  value={content.heroTitle}
+                  onChange={(e) => updateField("heroTitle", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Hero Description</label>
+                <textarea
+                  rows={4}
+                  value={content.heroText}
+                  onChange={(e) => updateField("heroText", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">About Title</label>
+                <input
+                  value={content.aboutTitle}
+                  onChange={(e) => updateField("aboutTitle", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">About Description</label>
+                <textarea
+                  rows={4}
+                  value={content.aboutText}
+                  onChange={(e) => updateField("aboutText", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Vision Title</label>
+                <input
+                  value={content.visionTitle}
+                  onChange={(e) => updateField("visionTitle", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Vision Description</label>
+                <textarea
+                  rows={3}
+                  value={content.visionText}
+                  onChange={(e) => updateField("visionText", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Batches Title</label>
+                <input
+                  value={content.batchesTitle}
+                  onChange={(e) => updateField("batchesTitle", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Batches Intro</label>
+                <textarea
+                  rows={3}
+                  value={content.batchesIntro}
+                  onChange={(e) => updateField("batchesIntro", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
             </div>
+          </div>
 
-            <div>
-              <label className="mb-2 block text-sm font-semibold text-slate-700">Tagline</label>
-              <input
-                value={content.tagline}
-                onChange={(e) => updateField("tagline", e.target.value)}
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
-              />
-            </div>
+          <div className="rounded-[2rem] bg-white p-6 shadow-[0_18px_40px_rgba(13,45,92,0.08)] ring-1 ring-slate-200">
+            <h2 className="text-2xl font-black text-[#0d2d5c]">SEO Settings</h2>
 
-            <div>
-              <label className="mb-2 block text-sm font-semibold text-slate-700">Hero Title</label>
-              <textarea
-                rows={3}
-                value={content.heroTitle}
-                onChange={(e) => updateField("heroTitle", e.target.value)}
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
-              />
-            </div>
+            <div className="mt-6 space-y-5">
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Home Meta Title</label>
+                <input
+                  value={content.homeMetaTitle}
+                  onChange={(e) => updateField("homeMetaTitle", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
 
-            <div>
-              <label className="mb-2 block text-sm font-semibold text-slate-700">Hero Description</label>
-              <textarea
-                rows={4}
-                value={content.heroText}
-                onChange={(e) => updateField("heroText", e.target.value)}
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
-              />
-            </div>
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Home Meta Description</label>
+                <textarea
+                  rows={3}
+                  value={content.homeMetaDescription}
+                  onChange={(e) => updateField("homeMetaDescription", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
 
-            <div>
-              <label className="mb-2 block text-sm font-semibold text-slate-700">About Title</label>
-              <input
-                value={content.aboutTitle}
-                onChange={(e) => updateField("aboutTitle", e.target.value)}
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
-              />
-            </div>
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">About Meta Title</label>
+                <input
+                  value={content.aboutMetaTitle}
+                  onChange={(e) => updateField("aboutMetaTitle", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
 
-            <div>
-              <label className="mb-2 block text-sm font-semibold text-slate-700">About Description</label>
-              <textarea
-                rows={4}
-                value={content.aboutText}
-                onChange={(e) => updateField("aboutText", e.target.value)}
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
-              />
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">About Meta Description</label>
+                <textarea
+                  rows={3}
+                  value={content.aboutMetaDescription}
+                  onChange={(e) => updateField("aboutMetaDescription", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Course Meta Title</label>
+                <input
+                  value={content.courseMetaTitle}
+                  onChange={(e) => updateField("courseMetaTitle", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Course Meta Description</label>
+                <textarea
+                  rows={3}
+                  value={content.courseMetaDescription}
+                  onChange={(e) => updateField("courseMetaDescription", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Batches Meta Title</label>
+                <input
+                  value={content.batchesMetaTitle}
+                  onChange={(e) => updateField("batchesMetaTitle", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Batches Meta Description</label>
+                <textarea
+                  rows={3}
+                  value={content.batchesMetaDescription}
+                  onChange={(e) => updateField("batchesMetaDescription", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Vision Meta Title</label>
+                <input
+                  value={content.visionMetaTitle}
+                  onChange={(e) => updateField("visionMetaTitle", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Vision Meta Description</label>
+                <textarea
+                  rows={3}
+                  value={content.visionMetaDescription}
+                  onChange={(e) => updateField("visionMetaDescription", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Contact Meta Title</label>
+                <input
+                  value={content.contactMetaTitle}
+                  onChange={(e) => updateField("contactMetaTitle", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Contact Meta Description</label>
+                <textarea
+                  rows={3}
+                  value={content.contactMetaDescription}
+                  onChange={(e) => updateField("contactMetaDescription", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -234,19 +458,42 @@ export default function AdminPage() {
                   className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
                 />
               </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Contact Title</label>
+                <input
+                  value={content.contactTitle}
+                  onChange={(e) => updateField("contactTitle", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Contact Intro</label>
+                <textarea
+                  rows={3}
+                  value={content.contactText}
+                  onChange={(e) => updateField("contactText", e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                />
+              </div>
             </div>
           </div>
 
           <div className="rounded-[2rem] bg-[#fff7f1] p-6 shadow-sm ring-1 ring-[#f7dcc0]">
-            <h3 className="text-xl font-black text-[#0d2d5c]">Quick Tips</h3>
-            <ul className="mt-4 space-y-3 text-sm text-slate-700">
-              <li>• Update your academy branding and message from here.</li>
-              <li>• Keep course names short and easy to scan.</li>
-              <li>• Save often after changing the contact details.</li>
-            </ul>
+            <h3 className="text-xl font-black text-[#0d2d5c]">Batch Data JSON</h3>
+            <div className="mt-4">
+              <textarea
+                rows={14}
+                value={JSON.stringify(content.batchesRows, null, 2)}
+                onChange={(e) => updateBatchRows(e.target.value)}
+                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 font-mono text-xs outline-none transition focus:border-[#0d2d5c]"
+              />
+            </div>
           </div>
         </div>
       </section>
+
     </main>
   );
 }

@@ -30,6 +30,12 @@ body {
   font-family: var(--font-source-serif), "Times New Roman", serif;
 }
 
+@media (max-width: 640px) {
+  body {
+    padding-bottom: 88px;
+  }
+}
+
 h1,
 h2,
 h3,

@@ -1,4 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { getSiteContent } from "@/lib/site-content";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const siteContent = await getSiteContent();
+
+  return {
+    title: siteContent.aboutMetaTitle,
+    description: siteContent.aboutMetaDescription,
+  };
+}
 
 const newsItems = [
   { title: "New Batch Enrollment Open", text: "Fresh learning batches are now open for interested learners across selected programs." },

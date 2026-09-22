@@ -1,6 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { LogoBadge } from "@/components/logo-badge";
 import { getSiteContent } from "@/lib/site-content";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const siteContent = await getSiteContent();
+
+  return {
+    title: siteContent.homeMetaTitle,
+    description: siteContent.homeMetaDescription,
+  };
+}
 
 const stats = [
   { value: "10+", label: "Years of Excellence" },
