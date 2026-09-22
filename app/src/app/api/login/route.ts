@@ -20,6 +20,10 @@ export async function POST(request: Request) {
     await ensureDatabaseReady();
 
     const adminCreds = createDefaultAdminCredentials();
+    if (!adminCreds.email || !adminCreds.password) {
+      return NextResponse.json({ ok: false, message: "Admin credentials are not configured." }, { status: 500 });
+    }
+
     const initialPasswordHash = await hashPassword(adminCreds.password);
     await sql`
       INSERT INTO admin_users (email, password_hash)
