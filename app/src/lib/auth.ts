@@ -191,7 +191,7 @@ export function getCookieValue(cookieHeader: string | undefined, name: string) {
 
 export function createDefaultAdminCredentials() {
   return {
-    email: process.env.ADMIN_EMAIL || "admin@rameshsofttechacademy.com",
-    password: process.env.ADMIN_PASSWORD || "RSTadmin123",
+    email: process.env.ADMIN_EMAIL || "",
+    password: process.env.ADMIN_PASSWORD || "",
   };
 }

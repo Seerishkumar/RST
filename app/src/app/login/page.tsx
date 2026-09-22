@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("admin@rameshsofttechacademy.com");
-  const [password, setPassword] = useState("RSTadmin123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -49,7 +49,7 @@ export default function LoginPage() {
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
-              placeholder="admin@rameshsofttechacademy.com"
+              placeholder="Enter admin email"
               required
             />
           </div>
