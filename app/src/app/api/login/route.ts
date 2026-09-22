@@ -21,7 +21,8 @@ export async function POST(request: Request) {
 
     const adminCreds = createDefaultAdminCredentials();
     if (!adminCreds.email || !adminCreds.password) {
-      return NextResponse.json({ ok: false, message: "Admin credentials are not configured." }, { status: 500 });
+      console.error("Admin login attempted but server admin credentials are not configured.");
+      return NextResponse.json({ ok: false, message: "Login temporarily unavailable. Please contact the site administrator." }, { status: 500 });
     }
 
     const initialPasswordHash = await hashPassword(adminCreds.password);

@@ -49,7 +49,7 @@ export default function LoginPage() {
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
-              placeholder="Enter admin email"
+              placeholder="admin@rstacademy.com"
               required
             />
           </div>

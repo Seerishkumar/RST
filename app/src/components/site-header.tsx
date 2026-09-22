@@ -13,7 +13,7 @@ const navItems = [
     children: [
       { href: "/about/ramesh-soft-tech", label: "About Ramesh Soft Tech" },
       { href: "/about/trainers-profile", label: "Trainers Profile" },
-      { href: "/about/our-theme", label: "Our Theme" },
+      { href: "/about/our-theme", label: "Our Vision" },
       { href: "/about/careers", label: "Careers" },
       { href: "/about/testimonials", label: "Testimonials" },
       { href: "/about/news-events", label: "News & Events" },
@@ -21,7 +21,6 @@ const navItems = [
   },
   { href: "/course", label: "Course" },
   { href: "/batches", label: "Batches" },
-  { href: "/vision", label: "Vision" },
   { href: "/contact", label: "Contact Us" },
 ];
 
