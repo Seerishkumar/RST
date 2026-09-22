@@ -1,4 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { getSiteContent } from "@/lib/site-content";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const siteContent = await getSiteContent();
+
+  return {
+    title: siteContent.aboutMetaTitle,
+    description: siteContent.aboutMetaDescription,
+  };
+}
 
 const testimonials = [
   { name: "A. Kumar", quote: "The sessions were practical, encouraging, and very helpful for my career direction." },

@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
 import { getSiteContent } from "@/lib/site-content";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const siteContent = await getSiteContent();
+
+  return {
+    title: siteContent.courseMetaTitle,
+    description: siteContent.courseMetaDescription,
+  };
+}
 
 const courses = [
   {
