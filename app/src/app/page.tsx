@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LogoBadge } from "@/components/logo-badge";
+import { getSiteContent } from "@/lib/site-content";
 
 const stats = [
   { value: "10+", label: "Years of Excellence" },
@@ -24,20 +25,22 @@ const courses = [
   "Interview Readiness",
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const siteContent = await getSiteContent();
+
   return (
     <main className="pb-16 text-slate-900">
       <section className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
         <div className="grid items-center gap-10 rounded-[2rem] bg-white p-6 shadow-[0_20px_45px_rgba(13,45,92,0.06)] ring-1 ring-slate-200 lg:grid-cols-[1.1fr_0.9fr] lg:p-8">
           <div>
             <p className="mb-4 inline-flex rounded-full border border-[#f47d20]/30 bg-[#fff4eb] px-3 py-1 text-xs font-black uppercase tracking-[0.22em] text-[#d95d0a]">
-              Learn • Grow • Succeed
+              {siteContent.tagline}
             </p>
             <h1 className="max-w-xl text-4xl font-black leading-tight text-[#0d2d5c] sm:text-5xl lg:text-6xl">
-              Empowering future-ready careers through skill-based training.
+              {siteContent.heroTitle}
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
-              We help students and professionals build confidence, real-world skills, and career momentum through practical, mentor-led learning.
+              {siteContent.heroText}
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -69,10 +72,8 @@ export default function HomePage() {
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="rounded-[2rem] bg-[#0d2d5c] p-8 text-white shadow-[0_24px_45px_rgba(13,45,92,0.12)] md:p-10">
             <p className="text-sm font-black uppercase tracking-[0.25em] text-orange-200">About us</p>
-            <h2 className="mt-4 text-3xl font-black">A trusted place for learning and growth.</h2>
-            <p className="mt-4 text-base leading-7 text-slate-200">
-              Ramesh Soft Tech Academy creates a supportive learning ecosystem designed to build confidence, skills, and career direction with real-world relevance.
-            </p>
+            <h2 className="mt-4 text-3xl font-black">{siteContent.aboutTitle}</h2>
+            <p className="mt-4 text-base leading-7 text-slate-200">{siteContent.aboutText}</p>
           </div>
 
           <div className="grid gap-5 sm:grid-cols-2">
@@ -113,7 +114,7 @@ export default function HomePage() {
         <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
           <div className="mb-8 text-center">
             <p className="text-sm font-black uppercase tracking-[0.22em] text-[#f47d20]">Our strength</p>
-            <h2 className="mt-2 text-3xl font-black text-[#0d2d5c]">Why students choose RST</h2>
+            <h2 className="mt-2 text-3xl font-black text-[#0d2d5c]">Why students choose {siteContent.academyName}</h2>
           </div>
 
           <div className="grid gap-6 md:grid-cols-3">
@@ -149,9 +150,9 @@ export default function HomePage() {
           <div className="rounded-[1.5rem] bg-white p-6 text-slate-900">
             <div className="mb-4 text-sm font-black uppercase tracking-[0.22em] text-[#0d2d5c]">Contact</div>
             <div className="space-y-3 text-sm text-slate-600">
-              <p><span className="font-bold text-[#0d2d5c]">Phone:</span> +91 98765 43210</p>
-              <p><span className="font-bold text-[#0d2d5c]">Email:</span> info@rameshsofttechacademy.com</p>
-              <p><span className="font-bold text-[#0d2d5c]">Address:</span> Your location here</p>
+              <p><span className="font-bold text-[#0d2d5c]">Phone:</span> {siteContent.phone}</p>
+              <p><span className="font-bold text-[#0d2d5c]">Email:</span> {siteContent.email}</p>
+              <p><span className="font-bold text-[#0d2d5c]">Address:</span> {siteContent.address}</p>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getSiteContent } from "@/lib/site-content";
 
 const values = [
   "Career-focused learning paths",
@@ -7,15 +8,15 @@ const values = [
   "Supportive environment for long-term success",
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const siteContent = await getSiteContent();
+
   return (
     <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <section className="rounded-[2rem] bg-white p-8 shadow-[0_20px_45px_rgba(13,45,92,0.08)] ring-1 ring-slate-200 md:p-12">
         <p className="text-sm font-black uppercase tracking-[0.25em] text-[#f47d20]">About us</p>
-        <h1 className="mt-4 text-3xl font-black text-[#0d2d5c] sm:text-5xl">Building confident careers through quality learning.</h1>
-        <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-          Ramesh Soft Tech Academy is committed to providing professional, practical, and future-ready education that helps learners grow with confidence and achieve meaningful career opportunities.
-        </p>
+        <h1 className="mt-4 text-3xl font-black text-[#0d2d5c] sm:text-5xl">{siteContent.aboutTitle}</h1>
+        <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">{siteContent.aboutText}</p>
       </section>
 
       <section className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
@@ -51,6 +52,28 @@ export default function AboutPage() {
             <p className="mt-2 text-sm font-medium text-slate-600">{label}</p>
           </div>
         ))}
+      </section>
+
+      <section className="mt-10 rounded-[2rem] bg-[#edf4ff] p-8 ring-1 ring-blue-100">
+        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#0d2d5c]">Explore more</p>
+        <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          {[
+            ["About Ramesh IT", "/about/ramesh-it"],
+            ["Trainers Profile", "/about/trainers-profile"],
+            ["Our Theme", "/about/our-theme"],
+            ["Careers", "/about/careers"],
+            ["Testimonials", "/about/testimonials"],
+            ["News & Events", "/about/news-events"],
+          ].map(([title, href]) => (
+            <Link
+              key={title}
+              href={href}
+              className="rounded-2xl border border-blue-100 bg-white px-4 py-3 text-sm font-semibold text-[#0d2d5c] transition hover:border-[#0d2d5c] hover:bg-[#f8fbff]"
+            >
+              {title}
+            </Link>
+          ))}
+        </div>
       </section>
 
       <section className="mt-10 rounded-[2rem] bg-[#edf4ff] p-8 text-center ring-1 ring-blue-100">

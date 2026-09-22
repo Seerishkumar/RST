@@ -1,0 +1,11 @@
+{
+  "name": "rst",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "cd app && npm run dev -- --hostname 0.0.0.0 --port 3000",
+    "build": "cd app && npm run build",
+    "start": "cd app && npm run start -- --hostname 0.0.0.0 --port 3000",
+    "lint": "cd app && npm run lint"
+  }
+}

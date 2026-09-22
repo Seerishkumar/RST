@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const defaultContent = {
   academyName: "Ramesh Soft Tech Academy",
@@ -17,15 +18,33 @@ const defaultContent = {
 };
 
 export default function AdminPage() {
+  const router = useRouter();
   const [content, setContent] = useState(defaultContent);
   const [saved, setSaved] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const stored = window.localStorage.getItem("rst-admin-content");
-    if (stored) {
-      setContent(JSON.parse(stored));
-    }
-  }, []);
+    const loadContent = async () => {
+      try {
+        const response = await fetch("/api/admin/settings");
+        if (!response.ok) {
+          router.push("/login");
+          return;
+        }
+
+        const data = await response.json();
+        if (data?.content) {
+          setContent({ ...defaultContent, ...data.content });
+        }
+      } catch {
+        router.push("/login");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadContent();
+  }, [router]);
 
   useEffect(() => {
     if (!saved) return;
@@ -47,10 +66,42 @@ export default function AdminPage() {
     setContent((prev) => ({ ...prev, [key]: value }));
   };
 
-  const saveContent = () => {
-    window.localStorage.setItem("rst-admin-content", JSON.stringify(content));
-    setSaved(true);
+  const saveContent = async () => {
+    try {
+      const response = await fetch("/api/admin/settings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(content),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to save");
+      }
+
+      setSaved(true);
+    } catch {
+      window.alert("Unable to save content right now.");
+    }
   };
+
+  const logout = async () => {
+    await fetch("/api/logout", { method: "POST" });
+    router.push("/login");
+    router.refresh();
+  };
+
+  if (loading) {
+    return (
+      <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="rounded-[2rem] bg-white p-8 text-center shadow-sm ring-1 ring-slate-200">
+          <p className="text-sm font-black uppercase tracking-[0.24em] text-[#f47d20]">Loading</p>
+          <h1 className="mt-3 text-2xl font-black text-[#0d2d5c]">Preparing admin dashboard...</h1>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -61,13 +112,22 @@ export default function AdminPage() {
             <h1 className="mt-2 text-3xl font-black sm:text-4xl">RST Dashboard</h1>
           </div>
 
-          <button
-            type="button"
-            onClick={saveContent}
-            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#f47d20] to-[#dd6210] px-5 py-2.5 text-sm font-bold text-white shadow-[0_10px_25px_rgba(244,125,32,0.35)]"
-          >
-            {saved ? "Saved" : "Save Changes"}
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={saveContent}
+              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#f47d20] to-[#dd6210] px-5 py-2.5 text-sm font-bold text-white shadow-[0_10px_25px_rgba(244,125,32,0.35)]"
+            >
+              {saved ? "Saved" : "Save Changes"}
+            </button>
+            <button
+              type="button"
+              onClick={logout}
+              className="inline-flex items-center justify-center rounded-full border border-white/30 px-4 py-2.5 text-sm font-bold text-white"
+            >
+              Logout
+            </button>
+          </div>
         </div>
       </div>
 
