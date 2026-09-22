@@ -1,4 +1,8 @@
-export default function ContactPage() {
+import { getSiteContent } from "@/lib/site-content";
+
+export default async function ContactPage() {
+  const siteContent = await getSiteContent();
+
   return (
     <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
@@ -6,9 +10,9 @@ export default function ContactPage() {
           <p className="text-sm font-black uppercase tracking-[0.24em] text-orange-200">Contact us</p>
           <h1 className="mt-4 text-3xl font-black sm:text-5xl">Talk to our team today.</h1>
           <div className="mt-8 space-y-5 text-sm text-slate-200">
-            <p><span className="font-bold text-white">Phone:</span> +91 98765 43210</p>
-            <p><span className="font-bold text-white">Email:</span> info@rameshsofttechacademy.com</p>
-            <p><span className="font-bold text-white">Address:</span> Your location here</p>
+            <p><span className="font-bold text-white">Phone:</span> {siteContent.phone}</p>
+            <p><span className="font-bold text-white">Email:</span> {siteContent.email}</p>
+            <p><span className="font-bold text-white">Address:</span> {siteContent.address}</p>
           </div>
         </div>
 

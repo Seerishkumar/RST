@@ -1,3 +1,5 @@
+import { getSiteContent } from "@/lib/site-content";
+
 const courses = [
   {
     title: "Software Development",
@@ -25,14 +27,16 @@ const courses = [
   },
 ];
 
-export default function CoursePage() {
+export default async function CoursePage() {
+  const siteContent = await getSiteContent();
+
   return (
     <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <section className="rounded-[2rem] bg-white p-8 shadow-[0_20px_45px_rgba(13,45,92,0.08)] ring-1 ring-slate-200 md:p-12">
         <p className="text-sm font-black uppercase tracking-[0.25em] text-[#f47d20]">Our courses</p>
         <h1 className="mt-4 text-3xl font-black text-[#0d2d5c] sm:text-5xl">Programs designed for modern careers.</h1>
         <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-          Every course is built to combine practical skills, mentor guidance, and a strong learning experience that helps learners grow quickly and confidently.
+          {siteContent.aboutText}
         </p>
       </section>
 

@@ -1,3 +1,5 @@
+import { getSiteContent } from "@/lib/site-content";
+
 const batches = [
   { name: "Weekday Batch", time: "Mon - Sat | 9:00 AM - 11:00 AM", seats: "Limited Seats" },
   { name: "Evening Batch", time: "Mon - Sat | 6:00 PM - 8:00 PM", seats: "Available" },
@@ -5,14 +7,16 @@ const batches = [
   { name: "Fast Track Batch", time: "Custom schedule as per course", seats: "By request" },
 ];
 
-export default function BatchesPage() {
+export default async function BatchesPage() {
+  const siteContent = await getSiteContent();
+
   return (
     <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <section className="rounded-[2rem] bg-white p-8 shadow-[0_20px_45px_rgba(13,45,92,0.08)] ring-1 ring-slate-200 md:p-12">
         <p className="text-sm font-black uppercase tracking-[0.25em] text-[#f47d20]">Batches</p>
         <h1 className="mt-4 text-3xl font-black text-[#0d2d5c] sm:text-5xl">Flexible batch options to match your routine.</h1>
         <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-          We offer structured learning batches to make quality education accessible for students and working professionals alike.
+          {siteContent.heroText}
         </p>
       </section>
 
