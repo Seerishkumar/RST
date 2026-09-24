@@ -1,3 +1,4 @@
+import { unstable_noStore as noStore } from "next/cache";
 import { neon } from "@neondatabase/serverless";
 
 export const defaultSiteContent = {
@@ -147,6 +148,8 @@ export async function ensureDatabaseReady() {
 }
 
 export async function getSiteContent(): Promise<SiteContent> {
+  noStore();
+
   const sql = getDb();
   if (!sql) {
     return defaultSiteContent;

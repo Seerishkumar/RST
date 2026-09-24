@@ -15,8 +15,6 @@ const navItems = [
       { href: "/about/trainers-profile", label: "Trainers Profile" },
       { href: "/about/our-theme", label: "Our Vision" },
       { href: "/about/careers", label: "Careers" },
-      { href: "/about/testimonials", label: "Testimonials" },
-      { href: "/about/news-events", label: "News & Events" },
     ],
   },
   { href: "/course", label: "Course" },
