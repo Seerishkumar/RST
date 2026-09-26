@@ -10,43 +10,17 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const courses = [
-  {
-    title: "Software Development",
-    description: "Master front-end and back-end development with practical, project-driven learning.",
-  },
-  {
-    title: "Web & Mobile App Training",
-    description: "Learn to build responsive digital products that work across mobile and web platforms.",
-  },
-  {
-    title: "Digital Marketing",
-    description: "Understand branding, SEO, social strategy, and performance marketing in real campaigns.",
-  },
-  {
-    title: "Graphic Design",
-    description: "Build creative skills using modern design tools and storytelling techniques.",
-  },
-  {
-    title: "Cloud & Cyber Security",
-    description: "Explore cloud fundamentals, security awareness, and digital protection best practices.",
-  },
-  {
-    title: "Interview Readiness",
-    description: "Prepare for professional opportunities with communication, confidence, and mock interview coaching.",
-  },
-];
-
 export default async function CoursePage() {
   const siteContent = await getSiteContent();
+  const courses = Array.isArray(siteContent.courseCards) ? siteContent.courseCards : [];
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <section className="rounded-[2rem] bg-white p-8 shadow-[0_20px_45px_rgba(13,45,92,0.08)] ring-1 ring-slate-200 md:p-12">
         <p className="text-sm font-black uppercase tracking-[0.25em] text-[#f47d20]">Our courses</p>
-        <h1 className="mt-4 text-3xl font-black text-[#0d2d5c] sm:text-5xl">Programs designed for modern careers.</h1>
+        <h1 className="mt-4 text-3xl font-black text-[#0d2d5c] sm:text-5xl">{siteContent.courseTitle}</h1>
         <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-          {siteContent.aboutText}
+          {siteContent.courseIntro}
         </p>
       </section>
 

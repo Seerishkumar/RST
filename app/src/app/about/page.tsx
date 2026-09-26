@@ -11,15 +11,9 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const values = [
-  "Career-focused learning paths",
-  "Practical mentoring and industry exposure",
-  "Personal guidance for real growth",
-  "Supportive environment for long-term success",
-];
-
 export default async function AboutPage() {
   const siteContent = await getSiteContent();
+  const values = Array.isArray(siteContent.aboutValues) ? siteContent.aboutValues : [];
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
