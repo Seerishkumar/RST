@@ -46,7 +46,7 @@ export default async function HomePage() {
             <p className="mb-4 inline-flex rounded-full border border-[#f47d20]/30 bg-[#fff4eb] px-3 py-1 text-xs font-black uppercase tracking-[0.22em] text-[#d95d0a]">
               {siteContent.tagline}
             </p>
-            <h1 className="max-w-xl text-4xl font-black leading-tight text-[#0d2d5c] sm:text-5xl lg:text-6xl">
+            <h1 className="max-w-xl text-4xl font-normal leading-tight text-[#0d2d5c] sm:text-5xl lg:text-6xl">
               {siteContent.heroTitle}
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
@@ -159,10 +159,10 @@ export default async function HomePage() {
 
           <div className="rounded-[1.5rem] bg-white p-6 text-slate-900">
             <div className="mb-4 text-sm font-black uppercase tracking-[0.22em] text-[#0d2d5c]">Contact</div>
-            <div className="space-y-3 text-sm text-slate-600">
-              <p><span className="font-bold text-[#0d2d5c]">Phone:</span> {siteContent.phone}</p>
-              <p><span className="font-bold text-[#0d2d5c]">Email:</span> {siteContent.email}</p>
-              <p><span className="font-bold text-[#0d2d5c]">Address:</span> {siteContent.address}</p>
+            <div className="default-info-text space-y-3 text-sm text-slate-600">
+              <p><span className="font-normal text-[#0d2d5c]">Phone:</span> {siteContent.phone}</p>
+              <p><span className="font-normal text-[#0d2d5c]">Email:</span> {siteContent.email}</p>
+              <p><span className="font-normal text-[#0d2d5c]">Address:</span> {siteContent.address}</p>
             </div>
           </div>
         </div>

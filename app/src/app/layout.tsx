@@ -6,6 +6,15 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Ramesh Soft Tech Academy",
   description: "Professional training academy website for quality education and skill development.",
+  icons: {
+    icon: {
+      url: "/logo.svg",
+      type: "image/svg+xml",
+      sizes: "256x256",
+    },
+    shortcut: "/logo.svg",
+    apple: "/logo.svg",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
