@@ -23,9 +23,9 @@ export function SiteFooter() {
 
         <div>
           <p className="text-base font-black text-[#0d2d5c]">Contact</p>
-          <ul className="mt-3 space-y-2 text-sm text-slate-600">
+          <ul className="default-info-text mt-3 space-y-2 text-sm text-slate-600">
             <li>+91 98765 43210</li>
-            <li>info@rameshsofttechacademy.com</li>
+            <li>thisisramesh4u@gmail.com</li>
             <li>Your location here</li>
           </ul>
         </div>

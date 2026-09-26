@@ -66,6 +66,14 @@ img {
   max-width: 100%;
 }
 
+.default-info-text,
+.default-info-text * {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  letter-spacing: normal;
+  font-style: normal;
+}
+
 input,
 textarea,
 button {

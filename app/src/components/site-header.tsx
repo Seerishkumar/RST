@@ -14,12 +14,13 @@ const navItems = [
       { href: "/about/ramesh-soft-tech", label: "About Ramesh Soft Tech" },
       { href: "/about/trainers-profile", label: "Trainers Profile" },
       { href: "/about/our-theme", label: "Our Vision" },
-      { href: "/about/careers", label: "Careers" },
+      
     ],
   },
   { href: "/course", label: "Course" },
   { href: "/batches", label: "Batches" },
-  { href: "/contact", label: "Contact Us" },
+  { href: "/about/careers", label: "Careers" },
+  // { href: "/contact", label: "Contact Us" },
 ];
 
 export function SiteHeader() {
@@ -75,7 +76,7 @@ export function SiteHeader() {
                     >
                       <Link
                         href={item.href}
-                        className={`flex items-center gap-1 font-serif text-sm font-semibold tracking-[0.02em] transition ${
+                        className={`flex items-center gap-1 text-sm font-normal tracking-[0.02em] transition ${
                           active ? "text-[#0d2d5c]" : "text-slate-600 hover:text-[#0d2d5c]"
                         }`}
                       >
@@ -113,7 +114,7 @@ export function SiteHeader() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`font-serif text-sm font-semibold tracking-[0.02em] transition ${
+                    className={`text-sm font-normal tracking-[0.02em] transition ${
                       active ? "text-[#0d2d5c]" : "text-slate-600 hover:text-[#0d2d5c]"
                     }`}
                   >
@@ -128,7 +129,7 @@ export function SiteHeader() {
                 href="/contact"
                 className="hidden rounded-full bg-gradient-to-r from-[#f47d20] to-[#dd6210] px-4 py-2 text-xs font-bold text-white shadow-[0_12px_26px_rgba(244,125,32,0.30)] transition hover:scale-[1.02] sm:inline-flex"
               >
-                Enquire Now
+                Contact Us
               </Link>
 
               <button
@@ -156,7 +157,7 @@ export function SiteHeader() {
                         <button
                           type="button"
                           onClick={() => setAboutMenuOpen((value) => !value)}
-                          className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-semibold ${
+                          className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-normal ${
                             active ? "bg-[#edf4ff] text-[#0d2d5c]" : "text-slate-600"
                           }`}
                         >
@@ -192,7 +193,7 @@ export function SiteHeader() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className={`rounded-xl px-3 py-2 font-serif text-sm font-semibold tracking-[0.02em] ${
+                      className={`rounded-xl px-3 py-2 text-sm font-normal tracking-[0.02em] ${
                         active ? "bg-[#edf4ff] text-[#0d2d5c]" : "text-slate-600 hover:bg-slate-50"
                       }`}
                     >

@@ -21,10 +21,10 @@ export default async function ContactPage() {
           <p className="text-sm font-black uppercase tracking-[0.24em] text-orange-200">Contact us</p>
           <h1 className="mt-4 text-3xl font-black sm:text-5xl">{siteContent.contactTitle}</h1>
           <p className="mt-4 max-w-md text-base leading-7 text-slate-200">{siteContent.contactText}</p>
-          <div className="mt-8 space-y-5 text-sm text-slate-200">
-            <p><span className="font-bold text-white">Phone:</span> {siteContent.phone}</p>
-            <p><span className="font-bold text-white">Email:</span> {siteContent.email}</p>
-            <p><span className="font-bold text-white">Address:</span> {siteContent.address}</p>
+          <div className="default-info-text mt-8 space-y-5 text-sm text-slate-200">
+            <p><span className="font-normal text-white">Phone:</span> {siteContent.phone}</p>
+            <p><span className="font-normal text-white">Email:</span> {siteContent.email}</p>
+            <p><span className="font-normal text-white">Address:</span> {siteContent.address}</p>
           </div>
         </div>
 

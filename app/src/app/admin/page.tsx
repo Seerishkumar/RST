@@ -40,7 +40,7 @@ const defaultContent = {
   contactText:
     "Connect with us to learn more about our programs, training batches, and enrollment support.",
   phone: "+91 98765 43210",
-  email: "info@rameshsofttechacademy.com",
+  email: "thisisramesh4u@gmail.com",
   address: "Your location here",
   batchesRows: [
     {
