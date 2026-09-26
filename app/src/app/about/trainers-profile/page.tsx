@@ -17,15 +17,16 @@ const trainers = [
   { name: "Support Team", role: "Learning Assistance", text: "Provides guidance throughout the learning journey, from onboarding to completion." },
 ];
 
-export default function TrainersProfilePage() {
+export default async function TrainersProfilePage() {
+  const siteContent = await getSiteContent();
+  const trainers = Array.isArray(siteContent.trainersList) ? siteContent.trainersList : [];
+
   return (
     <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
       <section className="rounded-[2rem] bg-white p-8 shadow-[0_20px_45px_rgba(13,45,92,0.08)] ring-1 ring-slate-200 md:p-12">
         <p className="text-sm font-black uppercase tracking-[0.25em] text-[#f47d20]">Trainers Profile</p>
-        <h1 className="mt-4 text-3xl font-black text-[#0d2d5c] sm:text-5xl">Mentors who guide with clarity and experience.</h1>
-        <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-          Our trainers are selected for their subject knowledge, communication skills, and practical understanding of the industry. They focus on building confidence, clarity, and job-ready skills.
-        </p>
+        <h1 className="mt-4 text-3xl font-black text-[#0d2d5c] sm:text-5xl">{siteContent.trainersProfileTitle}</h1>
+        <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">{siteContent.trainersProfileText}</p>
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {trainers.map((trainer) => (

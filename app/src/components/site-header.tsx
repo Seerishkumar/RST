@@ -17,7 +17,7 @@ const navItems = [
       
     ],
   },
-  { href: "/course", label: "Course" },
+  { href: "/course", label: "Courses" },
   { href: "/batches", label: "Batches" },
   { href: "/about/careers", label: "Careers" },
   // { href: "/contact", label: "Contact Us" },

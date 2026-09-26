@@ -79,7 +79,7 @@ export default function AdminPage() {
       try {
         const response = await fetch("/api/admin/settings");
         if (!response.ok) {
-          router.push("/login");
+          router.push("/rst-login");
           return;
         }
 
@@ -88,7 +88,7 @@ export default function AdminPage() {
           setContent({ ...defaultContent, ...data.content });
         }
       } catch {
-        router.push("/login");
+        router.push("/rst-login");
       } finally {
         setLoading(false);
       }
@@ -151,9 +151,9 @@ export default function AdminPage() {
 
   const logout = async () => {
     await fetch("/api/logout", { method: "POST" });
-    router.replace("/login");
+    router.replace("/rst-login");
     router.refresh();
-    window.location.href = "/login";
+    window.location.href = "/rst-login";
   };
 
   if (loading) {
