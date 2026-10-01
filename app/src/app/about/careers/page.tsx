@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getSiteContent } from "@/lib/site-content";
 import { CareersForm } from "@/components/careers-form";
+import { RichTextBlock } from "@/components/rich-text-block";
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteContent = await getSiteContent();
@@ -21,7 +22,9 @@ export default async function CareersPage() {
       <div className="rounded-[2rem] bg-[#fff7f0] p-8 shadow-[0_20px_45px_rgba(13,45,92,0.08)] ring-1 ring-slate-200 md:p-12">
         <p className="text-sm font-black uppercase tracking-[0.25em] text-[#f47d20]">Careers</p>
         <h1 className="mt-4 text-3xl font-black text-[#0d2d5c] sm:text-5xl">{siteContent.careersTitle}</h1>
-        <p className="mt-5 text-lg leading-8 text-slate-600">{siteContent.careersText}</p>
+        <div className="mt-5 rich-text-content">
+          <RichTextBlock html={siteContent.careersText} />
+        </div>
 
         <div className="mt-8 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
           <h2 className="text-xl font-black text-[#0d2d5c]">What we focus on</h2>

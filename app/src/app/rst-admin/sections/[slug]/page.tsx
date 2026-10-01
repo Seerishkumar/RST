@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { RichTextEditor } from "@/components/rich-text-editor";
 
-const sectionMap: Record<string, { label: string; description: string; fields: Array<{ key: string; label: string; type: "text" | "textarea" }> }> = {
+const sectionMap: Record<string, { label: string; description: string; fields: Array<{ key: string; label: string; type: "text" | "textarea" | "richtext" }> }> = {
   home: {
     label: "Home",
     description: "Manage the homepage hero, branding, and contact details.",
@@ -12,7 +13,7 @@ const sectionMap: Record<string, { label: string; description: string; fields: A
       { key: "academyName", label: "Academy Name", type: "text" },
       { key: "tagline", label: "Tagline", type: "text" },
       { key: "heroTitle", label: "Hero Title", type: "textarea" },
-      { key: "heroText", label: "Hero Description", type: "textarea" },
+      { key: "heroText", label: "Hero Description", type: "richtext" },
       { key: "phone", label: "Phone", type: "text" },
       { key: "email", label: "Email", type: "text" },
       { key: "address", label: "Address", type: "text" },
@@ -23,7 +24,7 @@ const sectionMap: Record<string, { label: string; description: string; fields: A
     description: "Edit the main About page content.",
     fields: [
       { key: "aboutTitle", label: "About Title", type: "text" },
-      { key: "aboutText", label: "About Description", type: "textarea" },
+      { key: "aboutText", label: "About Description", type: "richtext" },
     ],
   },
   courses: {
@@ -31,7 +32,7 @@ const sectionMap: Record<string, { label: string; description: string; fields: A
     description: "Edit course page content and course cards.",
     fields: [
       { key: "courseTitle", label: "Course Title", type: "text" },
-      { key: "courseIntro", label: "Course Intro", type: "textarea" },
+      { key: "courseIntro", label: "Course Intro", type: "richtext" },
     ],
   },
   batches: {
@@ -39,7 +40,7 @@ const sectionMap: Record<string, { label: string; description: string; fields: A
     description: "Open the list and update a batch record.",
     fields: [
       { key: "batchesTitle", label: "Batches Title", type: "text" },
-      { key: "batchesIntro", label: "Batches Intro", type: "textarea" },
+      { key: "batchesIntro", label: "Batches Intro", type: "richtext" },
     ],
   },
   careers: {
@@ -47,7 +48,7 @@ const sectionMap: Record<string, { label: string; description: string; fields: A
     description: "Update careers page content.",
     fields: [
       { key: "careersTitle", label: "Careers Title", type: "text" },
-      { key: "careersText", label: "Careers Text", type: "textarea" },
+      { key: "careersText", label: "Careers Text", type: "richtext" },
     ],
   },
   contact: {
@@ -55,7 +56,7 @@ const sectionMap: Record<string, { label: string; description: string; fields: A
     description: "Update contact form and contact information.",
     fields: [
       { key: "contactTitle", label: "Contact Title", type: "text" },
-      { key: "contactText", label: "Contact Text", type: "textarea" },
+      { key: "contactText", label: "Contact Text", type: "richtext" },
       { key: "phone", label: "Phone", type: "text" },
       { key: "email", label: "Email", type: "text" },
       { key: "address", label: "Address", type: "text" },
@@ -66,9 +67,9 @@ const sectionMap: Record<string, { label: string; description: string; fields: A
     description: "Update this page introduction and mission statements.",
     fields: [
       { key: "rameshSoftTechTitle", label: "Title", type: "text" },
-      { key: "rameshSoftTechText", label: "Description", type: "textarea" },
-      { key: "rameshSoftTechMission", label: "Mission", type: "textarea" },
-      { key: "rameshSoftTechApproach", label: "Approach", type: "textarea" },
+      { key: "rameshSoftTechText", label: "Description", type: "richtext" },
+      { key: "rameshSoftTechMission", label: "Mission", type: "richtext" },
+      { key: "rameshSoftTechApproach", label: "Approach", type: "richtext" },
     ],
   },
   "trainers-profile": {
@@ -76,7 +77,7 @@ const sectionMap: Record<string, { label: string; description: string; fields: A
     description: "Update the trainer list and profile summary.",
     fields: [
       { key: "trainersProfileTitle", label: "Title", type: "text" },
-      { key: "trainersProfileText", label: "Description", type: "textarea" },
+      { key: "trainersProfileText", label: "Description", type: "richtext" },
     ],
   },
   "our-theme": {
@@ -84,7 +85,7 @@ const sectionMap: Record<string, { label: string; description: string; fields: A
     description: "Update the vision theme and key pillars.",
     fields: [
       { key: "ourThemeTitle", label: "Title", type: "text" },
-      { key: "ourThemeText", label: "Description", type: "textarea" },
+      { key: "ourThemeText", label: "Description", type: "richtext" },
     ],
   },
 };
@@ -184,7 +185,13 @@ export default function SectionEditPage() {
             {section.fields.map((field) => (
               <div key={field.key} className={field.type === "textarea" ? "md:col-span-2" : ""}>
                 <label className="mb-2 block text-sm font-semibold text-slate-700">{field.label}</label>
-                {field.type === "textarea" ? (
+                {field.type === "richtext" ? (
+                  <RichTextEditor
+                    value={form[field.key] || ""}
+                    onChange={(value) => handleChange(field.key, value)}
+                    label=""
+                  />
+                ) : field.type === "textarea" ? (
                   <textarea
                     value={form[field.key] || ""}
                     onChange={(event) => handleChange(field.key, event.target.value)}

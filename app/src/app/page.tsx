@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LogoBadge } from "@/components/logo-badge";
+import { RichTextBlock } from "@/components/rich-text-block";
 import { getSiteContent } from "@/lib/site-content";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -49,9 +50,9 @@ export default async function HomePage() {
             <h1 className="max-w-xl text-4xl font-normal leading-tight text-[#0d2d5c] sm:text-5xl lg:text-6xl">
               {siteContent.heroTitle}
             </h1>
-            <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
-              {siteContent.heroText}
-            </p>
+            <div className="mt-5 max-w-xl rich-text-content">
+              <RichTextBlock html={siteContent.heroText} />
+            </div>
 
             <div className="mt-8 flex flex-wrap gap-4">
               <Link href="/course" className="inline-flex rounded-full bg-gradient-to-r from-[#f47d20] to-[#dd6210] px-6 py-3 text-base font-bold text-white shadow-[0_14px_28px_rgba(244,125,32,0.28)] transition hover:scale-[1.02]">
@@ -83,7 +84,9 @@ export default async function HomePage() {
           <div className="rounded-[2rem] bg-[#0d2d5c] p-8 text-white shadow-[0_24px_45px_rgba(13,45,92,0.12)] md:p-10">
             <p className="text-sm font-black uppercase tracking-[0.25em] text-orange-200">About us</p>
             <h2 className="mt-4 text-3xl font-black">{siteContent.aboutTitle}</h2>
-            <p className="mt-4 text-base leading-7 text-slate-200">{siteContent.aboutText}</p>
+            <div className="mt-4 rich-text-content text-slate-200">
+              <RichTextBlock html={siteContent.aboutText} className="text-slate-200" />
+            </div>
           </div>
 
           <div className="grid gap-5 sm:grid-cols-2">

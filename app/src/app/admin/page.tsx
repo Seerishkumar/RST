@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { RichTextEditor } from "@/components/rich-text-editor";
 
 const defaultContent = {
   academyName: "Ramesh Soft Tech Academy",
@@ -239,12 +240,10 @@ export default function AdminPage() {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-700">Hero Description</label>
-                <textarea
-                  rows={4}
+                <RichTextEditor
                   value={content.heroText}
-                  onChange={(e) => updateField("heroText", e.target.value)}
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                  onChange={(value) => updateField("heroText", value)}
+                  label="Hero Description"
                 />
               </div>
 
@@ -258,12 +257,10 @@ export default function AdminPage() {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-700">About Description</label>
-                <textarea
-                  rows={4}
+                <RichTextEditor
                   value={content.aboutText}
-                  onChange={(e) => updateField("aboutText", e.target.value)}
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                  onChange={(value) => updateField("aboutText", value)}
+                  label="About Description"
                 />
               </div>
 
@@ -277,12 +274,10 @@ export default function AdminPage() {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-700">Vision Description</label>
-                <textarea
-                  rows={3}
+                <RichTextEditor
                   value={content.visionText}
-                  onChange={(e) => updateField("visionText", e.target.value)}
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                  onChange={(value) => updateField("visionText", value)}
+                  label="Vision Description"
                 />
               </div>
 
@@ -296,12 +291,10 @@ export default function AdminPage() {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-700">Batches Intro</label>
-                <textarea
-                  rows={3}
+                <RichTextEditor
                   value={content.batchesIntro}
-                  onChange={(e) => updateField("batchesIntro", e.target.value)}
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                  onChange={(value) => updateField("batchesIntro", value)}
+                  label="Batches Intro"
                 />
               </div>
             </div>
@@ -469,12 +462,10 @@ export default function AdminPage() {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-700">Contact Intro</label>
-                <textarea
-                  rows={3}
+                <RichTextEditor
                   value={content.contactText}
-                  onChange={(e) => updateField("contactText", e.target.value)}
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-[#0d2d5c]"
+                  onChange={(value) => updateField("contactText", value)}
+                  label="Contact Intro"
                 />
               </div>
             </div>

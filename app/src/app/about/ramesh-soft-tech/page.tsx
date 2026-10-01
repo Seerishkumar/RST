@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { RichTextBlock } from "@/components/rich-text-block";
 import { getSiteContent } from "@/lib/site-content";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -19,18 +20,22 @@ export default async function RameshSoftTechPage() {
       <div className="rounded-[2rem] bg-white p-8 shadow-[0_20px_45px_rgba(13,45,92,0.08)] ring-1 ring-slate-200 md:p-12">
         <p className="text-sm font-black uppercase tracking-[0.25em] text-[#f47d20]">About Ramesh Soft Tech</p>
         <h1 className="mt-4 text-3xl font-black text-[#0d2d5c] sm:text-5xl">{siteContent.rameshSoftTechTitle}</h1>
-        <p className="mt-5 text-lg leading-8 text-slate-600">
-          {siteContent.rameshSoftTechText}
-        </p>
+        <div className="mt-5 rich-text-content">
+          <RichTextBlock html={siteContent.rameshSoftTechText} />
+        </div>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           <div className="rounded-2xl bg-[#edf4ff] p-6">
             <h2 className="text-xl font-black text-[#0d2d5c]">Our mission</h2>
-            <p className="mt-3 text-slate-600">{siteContent.rameshSoftTechMission}</p>
+            <div className="mt-3 rich-text-content text-slate-600">
+              <RichTextBlock html={siteContent.rameshSoftTechMission} className="text-slate-600" />
+            </div>
           </div>
           <div className="rounded-2xl bg-[#fff7f0] p-6">
             <h2 className="text-xl font-black text-[#0d2d5c]">Our approach</h2>
-            <p className="mt-3 text-slate-600">{siteContent.rameshSoftTechApproach}</p>
+            <div className="mt-3 rich-text-content text-slate-600">
+              <RichTextBlock html={siteContent.rameshSoftTechApproach} className="text-slate-600" />
+            </div>
           </div>
         </div>
 

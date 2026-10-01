@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { RichTextBlock } from "@/components/rich-text-block";
 import { getSiteContent } from "@/lib/site-content";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -26,7 +27,9 @@ export default async function TrainersProfilePage() {
       <section className="rounded-[2rem] bg-white p-8 shadow-[0_20px_45px_rgba(13,45,92,0.08)] ring-1 ring-slate-200 md:p-12">
         <p className="text-sm font-black uppercase tracking-[0.25em] text-[#f47d20]">Trainers Profile</p>
         <h1 className="mt-4 text-3xl font-black text-[#0d2d5c] sm:text-5xl">{siteContent.trainersProfileTitle}</h1>
-        <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">{siteContent.trainersProfileText}</p>
+        <div className="mt-5 max-w-3xl rich-text-content">
+          <RichTextBlock html={siteContent.trainersProfileText} />
+        </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {trainers.map((trainer) => (

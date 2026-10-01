@@ -30,6 +30,123 @@ body {
   font-family: var(--font-source-serif), "Times New Roman", serif;
 }
 
+.rich-text-content {
+  color: #334155;
+  line-height: 1.8;
+  font-family: var(--font-sans);
+}
+
+.rich-text-content > :first-child {
+  margin-top: 0;
+}
+
+.rich-text-content > :last-child {
+  margin-bottom: 0;
+}
+
+.rich-text-content p,
+.rich-text-content li,
+.rich-text-content blockquote {
+  margin: 0.75rem 0;
+}
+
+.rich-text-content h1,
+.rich-text-content h2,
+.rich-text-content h3,
+.rich-text-content h4,
+.rich-text-content h5,
+.rich-text-content h6 {
+  margin: 1.25rem 0 0.75rem;
+  color: var(--brand-navy);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.rich-text-content ul,
+.rich-text-content ol {
+  margin: 0.75rem 0 0.75rem 1.5rem;
+  padding-left: 1rem;
+}
+
+.rich-text-content li {
+  margin: 0.35rem 0;
+}
+
+.rich-text-content a {
+  color: var(--brand-navy);
+  text-decoration: underline;
+}
+
+.rich-text-content blockquote {
+  border-left: 4px solid rgba(244, 125, 32, 0.7);
+  background: rgba(244, 125, 32, 0.06);
+  padding: 0.9rem 1rem;
+  border-radius: 0.7rem;
+  color: #1e293b;
+}
+
+.rich-text-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.rich-text-content th,
+.rich-text-content td {
+  border: 1px solid #dbe3f0;
+  padding: 0.7rem 0.8rem;
+  text-align: left;
+}
+
+.rich-text-content th {
+  background: #edf4ff;
+  color: var(--brand-navy);
+}
+
+.rich-text-editor .ProseMirror {
+  min-height: 180px;
+  max-height: 420px;
+  overflow: auto;
+  outline: none;
+}
+
+.rich-text-editor .ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #94a3b8;
+  pointer-events: none;
+  height: 0;
+}
+
+.rich-text-editor .ProseMirror h1,
+.rich-text-editor .ProseMirror h2,
+.rich-text-editor .ProseMirror h3,
+.rich-text-editor .ProseMirror h4,
+.rich-text-editor .ProseMirror h5,
+.rich-text-editor .ProseMirror h6 {
+  margin: 1rem 0 0.5rem;
+  color: var(--brand-navy);
+  line-height: 1.2;
+}
+
+.rich-text-editor .ProseMirror ul,
+.rich-text-editor .ProseMirror ol {
+  margin-left: 1.25rem;
+  padding-left: 1rem;
+}
+
+.rich-text-editor .ProseMirror blockquote {
+  margin: 1rem 0;
+  border-left: 4px solid rgba(244, 125, 32, 0.75);
+  padding-left: 1rem;
+  color: #334155;
+}
+
+.rich-text-editor .ProseMirror a {
+  color: var(--brand-navy);
+  text-decoration: underline;
+}
+
 @media (max-width: 640px) {
   body {
     padding-bottom: 88px;
